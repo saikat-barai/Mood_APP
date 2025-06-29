@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Validator;
 
 class MoodController extends Controller
 {
-    
+
     // mood list show 
     public function mood_list()
     {
@@ -76,7 +76,7 @@ class MoodController extends Controller
             'mood'      => $request->mood,
             'note'      => $request->note,
             'user_id'   => Auth::user()->id,
-            'created_at' => now(),
+            'updated_at' => now(),
         ]);
         return redirect()->back()->with('success', 'Mood updated successfully!');
     }
@@ -103,5 +103,34 @@ class MoodController extends Controller
         $mood = Mood::onlyTrashed()->where('user_id', Auth::user()->id)->where('id', $request->id)->first();
         $mood->forceDelete();
         return redirect()->back()->with('success', 'Mood deleted successfully!');
+    }
+
+    // show monthly modd 
+    public function mood_monthly()
+    {
+
+        $userId = Auth::user()->id;
+        $startDate = Carbon::now()->subDays(30);
+
+        $startOfMonth = Carbon::now()->startOfMonth();
+        $endOfMonth = Carbon::now()->endOfMonth();
+
+        // Group and count moods from the last 30 days
+        $topMood = Mood::where('user_id', $userId)
+            ->where('created_at', '>=', $startDate)
+            ->selectRaw('mood, COUNT(*) as mood_count')
+            ->groupBy('mood')
+            ->orderByDesc('mood_count')
+            ->first();
+
+        $moodCounts = Mood::where('user_id', $userId)
+            ->whereBetween('created_at', [$startOfMonth, $endOfMonth])
+            ->selectRaw('mood, COUNT(*) as total')
+            ->groupBy('mood')
+            ->pluck('total', 'mood');
+
+        $moodOfMonth = $topMood ? $topMood->mood : 'No mood found';
+
+        return view('Dashboard.Mood.monthly_mood', compact('moodOfMonth', 'moodCounts'));
     }
 }

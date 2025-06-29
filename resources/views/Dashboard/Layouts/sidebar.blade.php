@@ -36,7 +36,7 @@
                 </div>
             </li>
             <li class="nav-item">
-                <a href="pages/apps/chat.html" class="nav-link">
+                <a href="{{ route('mood.monthly') }}" class="nav-link">
                     <i class="link-icon" data-feather="message-square"></i>
                     <span class="link-title">Month's Mood</span>
                 </a>

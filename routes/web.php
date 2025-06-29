@@ -28,6 +28,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/mood/restore/{id}', [MoodController::class, 'mood_restore'])->name('mood.restore');
     // mood hard delete
     Route::post('/mood/hardDelete', [MoodController::class, 'mood_hardDelete'])->name('mood.hardDelete');
+    // show monthly mood list
+    Route::get('/mood/monthly', [MoodController::class, 'mood_monthly'])->name('mood.monthly');
 });
 
 
