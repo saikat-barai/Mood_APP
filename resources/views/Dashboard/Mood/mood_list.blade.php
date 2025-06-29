@@ -21,6 +21,7 @@
                         <table id="dataTableExample" class="table">
                             <thead>
                                 <tr>
+                                    <th>Date</th>
                                     <th>Mood</th>
                                     <th>Note</th>
                                     <th>Action</th>
@@ -29,6 +30,7 @@
                             <tbody>
                                 @foreach ($moods as $mood)
                                     <tr>
+                                        <td>{{ $mood->created_at->format('d F Y') }}</td>
                                         <td>{{ $mood->mood }}</td>
                                         <td>{{ $mood->note }}</td>
                                         <td>
@@ -43,8 +45,7 @@
                                                 style="display:inline-block;">
                                                 @csrf
                                                 {{-- @method('DELETE') --}}
-                                                <button type="submit" onclick="return confirm('Are you sure?')"
-                                                    class="btn btn-danger">
+                                                <button type="submit"class="btn btn-danger">
                                                     Delete
                                                 </button>
                                             </form>

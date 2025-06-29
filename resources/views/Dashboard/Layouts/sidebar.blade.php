@@ -30,7 +30,7 @@
                                     <a href="{{ route('mood.list') }}" class="nav-link">Mood List</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="pages/email/read.html" class="nav-link">Mood Create</a>
+                                    <a href="{{ route('mood.trashed') }}" class="nav-link">Trushed Mood</a>
                                 </li>
                             </ul>
                         </div>

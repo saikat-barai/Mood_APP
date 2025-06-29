@@ -12,11 +12,22 @@ Route::get('/', function () {
 
 // Protect route
 Route::middleware('auth')->group(function () {
+    // dashboard 
     Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
+    // show mood list 
     Route::get('/mood/list', [MoodController::class, 'mood_list'])->name('mood.list');
+    // add new mood 
     Route::post('/mood/store', [MoodController::class, 'mood_store'])->name('mood.store');
+    // mood soft delete 
     Route::post('/mood/destroy', [MoodController::class, 'mood_destroy'])->name('mood.destroy');
+    // mood update
     Route::post('/mood/update', [MoodController::class, 'mood_update'])->name('mood.update');
+    // trushed mood list 
+    Route::get('/mood/trashed', [MoodController::class, 'mood_trashed'])->name('mood.trashed');
+    // restore single mood
+    Route::get('/mood/restore/{id}', [MoodController::class, 'mood_restore'])->name('mood.restore');
+    // mood hard delete
+    Route::post('/mood/hardDelete', [MoodController::class, 'mood_hardDelete'])->name('mood.hardDelete');
 });
 
 
