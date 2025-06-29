@@ -27,7 +27,7 @@
                         <div class="collapse" id="emails">
                             <ul class="nav sub-menu">
                                 <li class="nav-item">
-                                    <a href="pages/email/inbox.html" class="nav-link">Mood List</a>
+                                    <a href="{{ route('mood.list') }}" class="nav-link">Mood List</a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="pages/email/read.html" class="nav-link">Mood Create</a>

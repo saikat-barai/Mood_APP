@@ -28,6 +28,18 @@ License: You must have a valid license purchased only from above link or https:/
     <link rel="stylesheet" href="../assets/css/demo_1/style.css">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="../assets/images/favicon.png" />
+
+
+
+    <!-- endinject -->
+    <!-- plugin css for this page -->
+    <link rel="stylesheet" href="../../../assets/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
+
+
+
 </head>
 
 <body class="sidebar-dark">
@@ -35,7 +47,7 @@ License: You must have a valid license purchased only from above link or https:/
 
         <!-- partial:partials/_sidebar.html -->
         @include('Dashboard.Layouts.sidebar')
-        
+
         <!-- partial -->
 
         <div class="page-wrapper">
@@ -81,6 +93,41 @@ License: You must have a valid license purchased only from above link or https:/
     <script src="../assets/js/dashboard.js"></script>
     <script src="../assets/js/datepicker.js"></script>
     <!-- end custom js for this page -->
+
+
+    <!-- core:js -->
+
+    <script src="../../../assets/vendors/datatables.net/jquery.dataTables.js"></script>
+    <script src="../../../assets/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+    <!-- end plugin js for this page -->
+    <!-- custom js for this page -->
+    <script src="../../../assets/js/data-table.js"></script>
+
+    {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+    <script>
+        toastr.options = {
+            "closeButton": true,
+            "progressBar": true,
+            "timeOut": "5000",
+            "positionClass": "toast-bottom-right"
+        };
+
+        @if (session('success'))
+            toastr.success("{{ session('success') }}");
+        @endif
+
+        @if (session('error'))
+            toastr.error("{{ session('error') }}");
+        @endif
+
+        @if ($errors->any())
+            toastr.warning("Some fields have validation errors.");
+        @endif
+    </script>
+
+
 </body>
 
 </html>
