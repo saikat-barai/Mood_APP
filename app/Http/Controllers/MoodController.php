@@ -10,10 +10,11 @@ use Illuminate\Support\Facades\Validator;
 
 class MoodController extends Controller
 {
+    
     // mood list show 
     public function mood_list()
     {
-        $moods = Mood::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->get();;
+        $moods = Mood::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->get();
         return view('Dashboard.Mood.mood_list', compact('moods'));
     }
 

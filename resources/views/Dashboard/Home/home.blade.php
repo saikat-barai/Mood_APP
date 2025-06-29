@@ -3,6 +3,9 @@
     <div class="d-flex justify-content-between align-items-center flex-wrap grid-margin">
         <div>
             <h4 class="mb-3 mb-md-0">Welcome to Dashboard</h4>
+            @if ($showBadge)
+                <span class="badge badge-success">🔥 You’re on a 3-day+ mood streak!</span>
+            @endif
         </div>
     </div>
 
