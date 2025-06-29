@@ -20,7 +20,7 @@
             <li class="nav-item">
                 <a class="nav-link" data-toggle="collapse" href="#emails" role="button" aria-expanded="false"
                     aria-controls="emails">
-                    <i class="link-icon" data-feather="mail"></i>
+                    <i class="link-icon" data-feather="droplet"></i>
                     <span class="link-title">Mood</span>
                     <i class="link-arrow" data-feather="chevron-down"></i>
                 </a>
@@ -37,24 +37,10 @@
             </li>
             <li class="nav-item">
                 <a href="{{ route('mood.monthly') }}" class="nav-link">
-                    <i class="link-icon" data-feather="message-square"></i>
+                     <i class="link-icon" data-feather="star"></i>
                     <span class="link-title">Month's Mood</span>
                 </a>
             </li>
-            {{-- <li class="nav-item">
-                        <a href="pages/apps/calendar.html" class="nav-link">
-                            <i class="link-icon" data-feather="calendar"></i>
-                            <span class="link-title">Calendar</span>
-                        </a>
-                    </li> --}}
-            {{-- <li class="nav-item nav-category">Docs</li>
-                    <li class="nav-item">
-                        <a href="" target="_blank"
-                            class="nav-link">
-                            <i class="link-icon" data-feather="hash"></i>
-                            <span class="link-title">Documentation</span>
-                        </a>
-                    </li> --}}
         </ul>
     </div>
 </nav>

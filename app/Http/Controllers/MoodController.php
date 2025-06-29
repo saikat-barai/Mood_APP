@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class MoodController extends Controller
 {
@@ -132,5 +133,33 @@ class MoodController extends Controller
         $moodOfMonth = $topMood ? $topMood->mood : 'No mood found';
 
         return view('Dashboard.Mood.monthly_mood', compact('moodOfMonth', 'moodCounts'));
+    }
+
+    public function exportMoodReport()
+    {
+        $userId = Auth::user()->id;
+        $startDate = Carbon::now()->subDays(30);
+
+        $startOfMonth = Carbon::now()->startOfMonth();
+        $endOfMonth = Carbon::now()->endOfMonth();
+
+        // Group and count moods from the last 30 days
+        $topMood = Mood::where('user_id', $userId)
+            ->where('created_at', '>=', $startDate)
+            ->selectRaw('mood, COUNT(*) as mood_count')
+            ->groupBy('mood')
+            ->orderByDesc('mood_count')
+            ->first();
+
+        $moodCounts = Mood::where('user_id', $userId)
+            ->whereBetween('created_at', [$startOfMonth, $endOfMonth])
+            ->selectRaw('mood, COUNT(*) as total')
+            ->groupBy('mood')
+            ->pluck('total', 'mood');
+
+        $moodOfMonth = $topMood ? $topMood->mood : 'No mood found';
+        $pdf = PDF::loadView('Dashboard.pdf.mood_report', compact('moodOfMonth', 'moodCounts'));
+
+        return $pdf->download('mood_report.pdf');
     }
 }
