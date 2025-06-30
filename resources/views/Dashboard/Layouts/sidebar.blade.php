@@ -1,6 +1,6 @@
 <nav class="sidebar">
     <div class="sidebar-header">
-        <a href="#" class="sidebar-brand">
+        <a href="{{ route('dashboard') }}" class="sidebar-brand">
             MOOD<span>APP</span>
         </a>
         <div class="sidebar-toggler not-active">

@@ -40,8 +40,8 @@
                                 </table>
                                 <hr>
                                 <div class="alert alert-info text-center">
-                                    ★ <strong>Mood Of The Last 30 Days</strong> ★<br>
-                                    <strong>{{ $moodOfMonth }}</strong>
+                                    ★ <strong style="font-size: 15px">Mood Of The Last 30 Days</strong> ★<br>
+                                    <strong style="color: #29c736; font-size: 20px">{{ $moodOfMonth }}</strong>
                                 </div>
                             </div>
                         </div>
